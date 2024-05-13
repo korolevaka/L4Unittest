@@ -4,22 +4,7 @@ from collections import Counter
 import re
 app = Flask(__name__)
 
-# @app.route('/', methods=['GET', 'POST'])
-# def home():
-#     result = ""
-#     precision = 2  # default precision
-#     if request.method == 'POST':
-#         if 'precision' in request.form:
-#             precision = int(request.form['precision'])
-#
-#         length = float(request.form['length'])
-#         width = float(request.form['width'])
-#         depth = float(request.form['depth'])
-#
-#         volume = length * width * depth
-#         result = round(volume, precision)
-#
-#     return render_template('home.html', result=result)
+
 @app.route('/', methods=['GET', 'POST'])
 def home():
     result = ""
