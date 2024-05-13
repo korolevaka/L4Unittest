@@ -9,53 +9,71 @@
 
 
     function validateInput() {
-        var a = document.getElementById('a').value;
-        var b = document.getElementById('b').value;
-        var c = document.getElementById('c').value;
+        var length = document.getElementById('length').value;
+        var width = document.getElementById('width').value;
+        var depth = document.getElementById('depth').value;
 
-        if (isNaN(a) || a === "" || isNaN(b) || b === "" || isNaN(c) || c === "") {
+        if (isNaN(length) || length === "" || isNaN(width) || width === "" || isNaN(depth) || depth === "") {
             document.getElementById('solve').disabled = true;
         } else {
             document.getElementById('solve').disabled = false;
         }
     }
 
+
 {% endblock %}
 
 {% block body %}
- <div class="container col-xl-10 col-xxl-8 px-4 py-5">
-        <div class="row align-items-center g-lg-5 py-5">
+ <div class="container col-xl-10 col-xxl-8 px-4 py-5 custom-container ">
+        <div class="row align-items-center g-lg-5 py-5 custom-container">
             <div class="col-lg-7 text-center text-lg-start">
-                <h1 class="display-4 fw-bold lh-1 mb-3">Введите коэффициенты квадратного уравнения:  aX<sup><small>2</small></sup> + bX + c </h1>
+                <h1 class="display-4 fw-bold lh-1 mb-3">Рассчет объема объекта</h1>
 
                 <p class="col-lg-10 fs-4"></p>
             </div>
             <div class="col-md-10 mx-auto col-lg-5">
                 <form class="p-4 p-md-5 border rounded-3 bg-light" action="/" method="post">
-                    <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="a" name="a" oninput="validateInput()" placeholder="Enter a">
-                        <label for="a">a</label>
+
+                <div class="form-floating mb-3">
+                        <input type="text" class="form-control" name="length" id="length" oninput="validateInput()" placeholder="Введите длину">
+                        <label for="length">Длина</label>
                     </div>
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="b" name="b" oninput="validateInput()" placeholder="Enter b">
-                        <label for="b">b</label>
+                        <input type="text" class="form-control"  name="width" id="width" oninput="validateInput()" placeholder="Введите ширину">
+                        <label for="width">Ширина</label>
                     </div>
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="c" name="c" oninput="validateInput()" placeholder="Enter c">
-                        <label for="c">c</label>
+                        <input type="text" class="form-control" name="depth" id="depth" oninput="validateInput()" placeholder="Введите глубину">
+                        <label for="depth">Глубина</label>
                     </div>
-                    <button class="w-100 btn btn-lg btn-primary" type="submit" id="solve" disabled>Решить</button>
+                    <div class="checkbox mb-3">
+                       <label>
+                          <input type="checkbox" id="precision-checkbox" value="remember-me"> Указать точность вычисления после запятой
+                       </label>
+                    </div>
+
+                    <div id="precision-input" style="display: none;">
+                       <label for="precision">Точность вычисления после запятой:</label>
+                       <input type="text" name="precision" id="precision"><br><br>
+                    </div>
+                    <button class="w-100 btn btn-brown btn-lg btn-primary " type="submit" id="solve" disabled>Рассчитать объем</button>
                 </form>
+
             </div>
+            <div>
+            {% if result %}
+                <h3>Объем объекта: {{ result }}</h3>
+            {% endif %}
         </div>
     </div>
-    {% if result %}
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <h2>{{ result }}</h2>
-                </div>
-            </div>
         </div>
-    {% endif %}
+    </div>
+
+
+<script>
+    document.getElementById('precision-checkbox').addEventListener('change', function() {
+        var precisionDiv = document.getElementById('precision-input');
+        precisionDiv.style.display = this.checked ? 'block' : 'none';
+    });
+</script>
 {% endblock %}

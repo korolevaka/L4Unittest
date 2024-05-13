@@ -9,68 +9,79 @@
     <link rel="stylesheet" href="/static/css/bootstrap.css">
 <style>
     body {
-    background-color: beige;
-}
+        background-color: #FFB6C1; /* светло-розовый */
+    }
 
-input[type="file"] {
-    background-color: #c2ad99; /* темно-бежевый цвет */
-    color: black; /* цвет текста */
-}
-.bg-brown {
-    background-color: #8B4513; /* коричневый цвет */
-    color: white; /* белый текст для контраста */
-}
+    input[type="file"] {
+        background-color: #FFC0CB; /* розовый цвет */
+        color: #000000; /* черный текст */
+    }
 
-.bg-brown:hover {
-    background-color: #A0522D; /* изменение цвета при наведении */
-    color: white; /* белый текст при наведении */
-}
-.btn-brown {
-    background-color: #8B4513; /* коричневый цвет */
-    border: none; /* убираем границу */
-    color: white; /* белый текст для контраста */
-    font-weight: bold; /* жирный шрифт */
-}
+    .bg-brown {
+        background-color: #FF69B4; /* розово-коричневый */
+        color: #FFFFFF; /* белый текст */
+    }
 
-.btn-brown:hover {
-    background-color: #A0522D; /* изменение цвета при наведении */
-    color: white; /* белый текст при наведении */
-}
+    .bg-brown:hover {
+        background-color: #FF7F50; /* светло-оранжевый */
+        color: #FFFFFF; /* белый текст */
+    }
 
-.table-custom {
-    background-color: beige; /* бежевый фон таблицы */
-}
+    .btn-brown {
+        background-color: #FF1493; /* ярко-розовый */
+        border: none;
+        color: #FFFFFF; /* белый текст */
+        font-weight: bold;
+    }
 
-/* Стили для четных строк */
-.table-custom tbody tr:nth-child(even) {
-    background-color: #8B4513; /* коричневый фон для четных строк */
-    color: white; /* белый текст для контраста */
-}
+    .btn-brown:hover {
+        background-color: #FF6347; /* темно-оранжевый */
+        color: #FFFFFF; /* белый текст */
+    }
 
-/* Стили для нечетных строк */
-.table-custom tbody tr:nth-child(odd) {
-    background-color: beige; /* бежевый фон для нечетных строк */
-}
+    .custom-container {
+        background-color: #FFC0CB; /* розовый */
+        color: #FF69B4; /* розово-*/
+    }
+    .custom-container-title {
+        color: #FF69B4; /* розово-*/
+    }
 
-/* Стили для заголовков таблицы */
-.table-custom thead th {
-    background-color: #D2B48C; /* цвет фона для заголовков */
-    color: white; /* белый текст */
-    font-weight: bold; /* жирный шрифт */
-}
-.custom-container
-{
-background-color: beige;/* бежевый фон контейнера */
-color: #8B4513;}
-.custom-container h1 {
-color: #8B4513; /* коричневый цвет заголовка */
-}
-/* Стили для текста */
-.custom-container p {
-color: #8B4513; /* коричневый цвет текста */
-}
+    .custom-container h1 {
+        color: #FF69B4; /* розово */
+    }
 
+    .custom-container p {
+        color: #FF69B4; /* розово*/
+    }
+
+    .form-control {
+        border-color: #BC8F8F; /* темно-розовый */
+    }
+
+    .btn-primary {
+        color: #FFC0CB; /* розовый */
+        background-color: #FF69B4; /* розово-коричневый */
+        border-color: #FFC0CB; /* розовый */
+    }
+
+    .btn-primary:hover {
+        background-color: #D9A3A3; /* светло-розовый */
+        border-color: #D9A3A3; /* светло-розовый */
+    }
+
+    .btn-primary:focus {
+        box-shadow: 0 0 0 0.25rem rgba(255, 192, 203, 0.5); /* тень фокуса */
+    }
+
+    .btn-primary:disabled {
+        color: #FFC0CB; /* розовый */
+        background-color: #FF69B4;
+        border-color: #F5F5F5; /* темно-серый */
+    }
 </style>
+
+
     <title>{% block title %}{% endblock %}</title>
     <script>{% block scripts %}{% endblock %}</script>
 </head>
@@ -79,7 +90,7 @@ color: #8B4513; /* коричневый цвет текста */
     <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
       <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
         <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
-        <span class="fs-4">Встречаемость слов в тексте</span>
+        <span class="fs-4 custom-container-title">Расчет объема с заданной точностью</span>
       </a>
 
       <ul class="nav nav-pills">
@@ -91,3 +102,4 @@ color: #8B4513; /* коричневый цвет текста */
     {% block body %}{% endblock %}
 </body>
 </html>
+

@@ -574,6 +574,10 @@ legend + * {
   font: inherit;
   -webkit-appearance: button;
 }
+button:disabled {
+    background-color: lightcoral;
+    color: beige;
+}
 
 output {
   display: inline-block;

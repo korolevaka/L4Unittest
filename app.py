@@ -4,41 +4,41 @@ from collections import Counter
 import re
 app = Flask(__name__)
 
-
-def allowed_file(filename):
-    return '.' in filename and filename.rsplit('.', 1)[1].lower() == 'txt'
-
-
-def count_words(file_path):
-    words = re.findall(r'\w+', open(file_path, 'r', encoding='utf-8').read().lower())
-    word_counts = Counter(words)
-    sorted_counts = sorted(word_counts.items(), key=lambda x: x[1], reverse=True)
-    return sorted_counts
-
-
+# @app.route('/', methods=['GET', 'POST'])
+# def home():
+#     result = ""
+#     precision = 2  # default precision
+#     if request.method == 'POST':
+#         if 'precision' in request.form:
+#             precision = int(request.form['precision'])
+#
+#         length = float(request.form['length'])
+#         width = float(request.form['width'])
+#         depth = float(request.form['depth'])
+#
+#         volume = length * width * depth
+#         result = round(volume, precision)
+#
+#     return render_template('home.html', result=result)
 @app.route('/', methods=['GET', 'POST'])
 def home():
-    txt_file_error = False
+    result = ""
+     # default precision
 
     if request.method == 'POST':
-        if 'file' not in request.files:
-            return "No file part"
+        length = float(request.form['length'])
+        width = float(request.form['width'])
+        depth = float(request.form['depth'])
+        if length !=0 and width !=0 and depth !=0:
+            if 'precision' in request.form and request.form['precision']:
+                precision = int(request.form['precision'])
+            else:
+                precision = 2  # Установка значения по умолчанию, если precision не был указан или пуст
 
-        file = request.files['file']
+            volume = length * width * depth
+            result = round(volume, precision)
 
-        if file.filename == '':
-            return "No selected file"
-
-        if file and allowed_file(file.filename):
-            file.save(secure_filename(file.filename))
-            word_counts = count_words(file.filename)
-            return render_template('result.html', word_counts=word_counts)
-        else:
-            txt_file_error = True
-
-    return render_template('home.html', txt_file_error=txt_file_error)
-
-
+    return render_template('home.html', result=result)
 @app.route('/about')
 def about():
     return render_template('about.html')
