@@ -8,7 +8,6 @@ app = Flask(__name__)
 @app.route('/', methods=['GET', 'POST'])
 def home():
     result = ""
-     # default precision
 
     if request.method == 'POST':
         length = float(request.form['length'])
@@ -18,7 +17,7 @@ def home():
             if 'precision' in request.form and request.form['precision']:
                 precision = int(request.form['precision'])
             else:
-                precision = 2  # Установка значения по умолчанию, если precision не был указан или пуст
+                precision = 2
 
             volume = length * width * depth
             result = round(volume, precision)
